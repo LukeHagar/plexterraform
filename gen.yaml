@@ -7,13 +7,13 @@ management:
 generation:
   comments: {}
   sdkClassName: Plex-API
-  repoURL: https://github.com/LukeHagar/plexterraform.git
+  repoURL: https://github.com/speakeasy-sdks/Personal-sample-sdk-9.git
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: false
-  useClassNamesForArrayFields: true
 features:
   terraform:
     constsAndDefaults: 0.1.2
