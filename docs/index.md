@@ -17,7 +17,7 @@ terraform {
   required_providers {
     PlexAPI = {
       source  = "LukeHagar/PlexAPI"
-      version = "0.1.0"
+      version = "0.2.0"
     }
   }
 }
@@ -33,4 +33,4 @@ provider "PlexAPI" {
 ### Optional
 
 - `access_token` (String, Sensitive)
-- `server_url` (String) Server URL (defaults to http://10.10.10.47:32400)
+- `server_url` (String) Server URL (defaults to {protocol}://{ip}:{port})

@@ -6,7 +6,6 @@ import (
 	"context"
 	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk"
 	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/pkg/models/shared"
-
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/provider"
 	"github.com/hashicorp/terraform-plugin-framework/provider/schema"
@@ -39,7 +38,7 @@ func (p *PlexAPIProvider) Schema(ctx context.Context, req provider.SchemaRequest
 		Description: `An Open API Spec for interacting with Plex.tv and Plex Servers`,
 		Attributes: map[string]schema.Attribute{
 			"server_url": schema.StringAttribute{
-				MarkdownDescription: "Server URL (defaults to http://10.10.10.47:32400)",
+				MarkdownDescription: "Server URL (defaults to {protocol}://{ip}:{port})",
 				Optional:            true,
 				Required:            false,
 			},
@@ -63,7 +62,7 @@ func (p *PlexAPIProvider) Configure(ctx context.Context, req provider.ConfigureR
 	ServerURL := data.ServerURL.ValueString()
 
 	if ServerURL == "" {
-		ServerURL = "http://10.10.10.47:32400"
+		ServerURL = "{protocol}://{ip}:{port}"
 	}
 
 	accessToken := data.AccessToken.ValueString()
