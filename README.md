@@ -61,7 +61,7 @@ terraform {
   required_providers {
     PlexAPI = {
       source  = "LukeHagar/PlexAPI"
-      version = "0.2.1"
+      version = "0.2.2"
     }
   }
 }
