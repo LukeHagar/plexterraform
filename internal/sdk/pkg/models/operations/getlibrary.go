@@ -99,16 +99,178 @@ func (o *GetLibraryErrors) GetStatus() *float64 {
 	return o.Status
 }
 
-// GetLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetLibraryResponseBody struct {
+// GetLibraryLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetLibraryLibraryResponseBody struct {
 	Errors []GetLibraryErrors `json:"errors,omitempty"`
 }
 
-func (o *GetLibraryResponseBody) GetErrors() []GetLibraryErrors {
+func (o *GetLibraryLibraryResponseBody) GetErrors() []GetLibraryErrors {
 	if o == nil {
 		return nil
 	}
 	return o.Errors
+}
+
+type GetLibraryDirectory struct {
+	Secondary *bool   `json:"secondary,omitempty"`
+	Prompt    *string `json:"prompt,omitempty"`
+	Search    *bool   `json:"search,omitempty"`
+	Key       *string `json:"key,omitempty"`
+	Title     *string `json:"title,omitempty"`
+}
+
+func (o *GetLibraryDirectory) GetSecondary() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Secondary
+}
+
+func (o *GetLibraryDirectory) GetPrompt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Prompt
+}
+
+func (o *GetLibraryDirectory) GetSearch() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Search
+}
+
+func (o *GetLibraryDirectory) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetLibraryDirectory) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+type GetLibraryMediaContainer struct {
+	Size             *int                  `json:"size,omitempty"`
+	AllowSync        *bool                 `json:"allowSync,omitempty"`
+	Art              *string               `json:"art,omitempty"`
+	Content          *string               `json:"content,omitempty"`
+	Identifier       *string               `json:"identifier,omitempty"`
+	LibrarySectionID *int                  `json:"librarySectionID,omitempty"`
+	MediaTagPrefix   *string               `json:"mediaTagPrefix,omitempty"`
+	MediaTagVersion  *int                  `json:"mediaTagVersion,omitempty"`
+	Thumb            *string               `json:"thumb,omitempty"`
+	Title1           *string               `json:"title1,omitempty"`
+	ViewGroup        *string               `json:"viewGroup,omitempty"`
+	ViewMode         *int                  `json:"viewMode,omitempty"`
+	Directory        []GetLibraryDirectory `json:"Directory,omitempty"`
+}
+
+func (o *GetLibraryMediaContainer) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetLibraryMediaContainer) GetAllowSync() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.AllowSync
+}
+
+func (o *GetLibraryMediaContainer) GetArt() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Art
+}
+
+func (o *GetLibraryMediaContainer) GetContent() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Content
+}
+
+func (o *GetLibraryMediaContainer) GetIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Identifier
+}
+
+func (o *GetLibraryMediaContainer) GetLibrarySectionID() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LibrarySectionID
+}
+
+func (o *GetLibraryMediaContainer) GetMediaTagPrefix() *string {
+	if o == nil {
+		return nil
+	}
+	return o.MediaTagPrefix
+}
+
+func (o *GetLibraryMediaContainer) GetMediaTagVersion() *int {
+	if o == nil {
+		return nil
+	}
+	return o.MediaTagVersion
+}
+
+func (o *GetLibraryMediaContainer) GetThumb() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Thumb
+}
+
+func (o *GetLibraryMediaContainer) GetTitle1() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title1
+}
+
+func (o *GetLibraryMediaContainer) GetViewGroup() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ViewGroup
+}
+
+func (o *GetLibraryMediaContainer) GetViewMode() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewMode
+}
+
+func (o *GetLibraryMediaContainer) GetDirectory() []GetLibraryDirectory {
+	if o == nil {
+		return nil
+	}
+	return o.Directory
+}
+
+// GetLibraryResponseBody - The details of the library
+type GetLibraryResponseBody struct {
+	MediaContainer *GetLibraryMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (o *GetLibraryResponseBody) GetMediaContainer() *GetLibraryMediaContainer {
+	if o == nil {
+		return nil
+	}
+	return o.MediaContainer
 }
 
 type GetLibraryResponse struct {
@@ -118,8 +280,10 @@ type GetLibraryResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// The details of the library
+	TwoHundredApplicationJSONObject *GetLibraryResponseBody
 	// Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-	Object *GetLibraryResponseBody
+	FourHundredAndOneApplicationJSONObject *GetLibraryLibraryResponseBody
 }
 
 func (o *GetLibraryResponse) GetContentType() string {
@@ -143,9 +307,16 @@ func (o *GetLibraryResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetLibraryResponse) GetObject() *GetLibraryResponseBody {
+func (o *GetLibraryResponse) GetTwoHundredApplicationJSONObject() *GetLibraryResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.TwoHundredApplicationJSONObject
+}
+
+func (o *GetLibraryResponse) GetFourHundredAndOneApplicationJSONObject() *GetLibraryLibraryResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }

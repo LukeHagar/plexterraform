@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
-  docChecksum: 45c73686e6dbe8c29b7e2857b6194ccf
+  docChecksum: a14d0ae27d4f5bd83b80747112f74352
   docVersion: 0.0.3
   speakeasyVersion: internal
   generationVersion: 2.237.2
-  releaseVersion: 0.2.4
-  configChecksum: 3eabe9635f0405c71d695a4559488aae
+  releaseVersion: 0.2.5
+  configChecksum: 8a99c36c4d1db17583b4c16f920029a5
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
