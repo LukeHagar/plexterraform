@@ -64,9 +64,6 @@ func (s *Sessions) GetSessions(ctx context.Context) (*operations.GetSessionsResp
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.GetSessionsResponseBody
@@ -74,7 +71,20 @@ func (s *Sessions) GetSessions(ctx context.Context) (*operations.GetSessionsResp
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetSessionsSessionsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -122,9 +132,6 @@ func (s *Sessions) GetSessionHistory(ctx context.Context) (*operations.GetSessio
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.GetSessionHistoryResponseBody
@@ -132,7 +139,20 @@ func (s *Sessions) GetSessionHistory(ctx context.Context) (*operations.GetSessio
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetSessionHistorySessionsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -250,7 +270,7 @@ func (s *Sessions) StopTranscodeSession(ctx context.Context, request operations.
 		RawResponse: httpRes,
 	}
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 204:
 		fallthrough
 	case httpRes.StatusCode == 400:
 	case httpRes.StatusCode == 401:

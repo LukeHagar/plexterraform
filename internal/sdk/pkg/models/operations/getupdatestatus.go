@@ -33,16 +33,130 @@ func (o *GetUpdateStatusErrors) GetStatus() *float64 {
 	return o.Status
 }
 
-// GetUpdateStatusResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetUpdateStatusResponseBody struct {
+// GetUpdateStatusUpdaterResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetUpdateStatusUpdaterResponseBody struct {
 	Errors []GetUpdateStatusErrors `json:"errors,omitempty"`
 }
 
-func (o *GetUpdateStatusResponseBody) GetErrors() []GetUpdateStatusErrors {
+func (o *GetUpdateStatusUpdaterResponseBody) GetErrors() []GetUpdateStatusErrors {
 	if o == nil {
 		return nil
 	}
 	return o.Errors
+}
+
+type Release struct {
+	Key         *string `json:"key,omitempty"`
+	Version     *string `json:"version,omitempty"`
+	Added       *string `json:"added,omitempty"`
+	Fixed       *string `json:"fixed,omitempty"`
+	DownloadURL *string `json:"downloadURL,omitempty"`
+	State       *string `json:"state,omitempty"`
+}
+
+func (o *Release) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *Release) GetVersion() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Version
+}
+
+func (o *Release) GetAdded() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Added
+}
+
+func (o *Release) GetFixed() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Fixed
+}
+
+func (o *Release) GetDownloadURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DownloadURL
+}
+
+func (o *Release) GetState() *string {
+	if o == nil {
+		return nil
+	}
+	return o.State
+}
+
+type GetUpdateStatusMediaContainer struct {
+	Size        *int      `json:"size,omitempty"`
+	CanInstall  *bool     `json:"canInstall,omitempty"`
+	CheckedAt   *int      `json:"checkedAt,omitempty"`
+	DownloadURL *string   `json:"downloadURL,omitempty"`
+	Status      *int      `json:"status,omitempty"`
+	Release     []Release `json:"Release,omitempty"`
+}
+
+func (o *GetUpdateStatusMediaContainer) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetUpdateStatusMediaContainer) GetCanInstall() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.CanInstall
+}
+
+func (o *GetUpdateStatusMediaContainer) GetCheckedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.CheckedAt
+}
+
+func (o *GetUpdateStatusMediaContainer) GetDownloadURL() *string {
+	if o == nil {
+		return nil
+	}
+	return o.DownloadURL
+}
+
+func (o *GetUpdateStatusMediaContainer) GetStatus() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+func (o *GetUpdateStatusMediaContainer) GetRelease() []Release {
+	if o == nil {
+		return nil
+	}
+	return o.Release
+}
+
+// GetUpdateStatusResponseBody - The Server Updates
+type GetUpdateStatusResponseBody struct {
+	MediaContainer *GetUpdateStatusMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (o *GetUpdateStatusResponseBody) GetMediaContainer() *GetUpdateStatusMediaContainer {
+	if o == nil {
+		return nil
+	}
+	return o.MediaContainer
 }
 
 type GetUpdateStatusResponse struct {
@@ -52,8 +166,10 @@ type GetUpdateStatusResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// The Server Updates
+	TwoHundredApplicationJSONObject *GetUpdateStatusResponseBody
 	// Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-	Object *GetUpdateStatusResponseBody
+	FourHundredAndOneApplicationJSONObject *GetUpdateStatusUpdaterResponseBody
 }
 
 func (o *GetUpdateStatusResponse) GetContentType() string {
@@ -77,9 +193,16 @@ func (o *GetUpdateStatusResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetUpdateStatusResponse) GetObject() *GetUpdateStatusResponseBody {
+func (o *GetUpdateStatusResponse) GetTwoHundredApplicationJSONObject() *GetUpdateStatusResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.TwoHundredApplicationJSONObject
+}
+
+func (o *GetUpdateStatusResponse) GetFourHundredAndOneApplicationJSONObject() *GetUpdateStatusUpdaterResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }

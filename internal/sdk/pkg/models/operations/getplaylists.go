@@ -115,16 +115,178 @@ func (o *GetPlaylistsErrors) GetStatus() *float64 {
 	return o.Status
 }
 
-// GetPlaylistsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetPlaylistsResponseBody struct {
+// GetPlaylistsPlaylistsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetPlaylistsPlaylistsResponseBody struct {
 	Errors []GetPlaylistsErrors `json:"errors,omitempty"`
 }
 
-func (o *GetPlaylistsResponseBody) GetErrors() []GetPlaylistsErrors {
+func (o *GetPlaylistsPlaylistsResponseBody) GetErrors() []GetPlaylistsErrors {
 	if o == nil {
 		return nil
 	}
 	return o.Errors
+}
+
+type GetPlaylistsMetadata struct {
+	RatingKey    *string `json:"ratingKey,omitempty"`
+	Key          *string `json:"key,omitempty"`
+	GUID         *string `json:"guid,omitempty"`
+	Type         *string `json:"type,omitempty"`
+	Title        *string `json:"title,omitempty"`
+	Summary      *string `json:"summary,omitempty"`
+	Smart        *bool   `json:"smart,omitempty"`
+	PlaylistType *string `json:"playlistType,omitempty"`
+	Composite    *string `json:"composite,omitempty"`
+	Icon         *string `json:"icon,omitempty"`
+	ViewCount    *int    `json:"viewCount,omitempty"`
+	LastViewedAt *int    `json:"lastViewedAt,omitempty"`
+	Duration     *int    `json:"duration,omitempty"`
+	LeafCount    *int    `json:"leafCount,omitempty"`
+	AddedAt      *int    `json:"addedAt,omitempty"`
+	UpdatedAt    *int    `json:"updatedAt,omitempty"`
+}
+
+func (o *GetPlaylistsMetadata) GetRatingKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.RatingKey
+}
+
+func (o *GetPlaylistsMetadata) GetKey() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Key
+}
+
+func (o *GetPlaylistsMetadata) GetGUID() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GUID
+}
+
+func (o *GetPlaylistsMetadata) GetType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Type
+}
+
+func (o *GetPlaylistsMetadata) GetTitle() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Title
+}
+
+func (o *GetPlaylistsMetadata) GetSummary() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Summary
+}
+
+func (o *GetPlaylistsMetadata) GetSmart() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Smart
+}
+
+func (o *GetPlaylistsMetadata) GetPlaylistType() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PlaylistType
+}
+
+func (o *GetPlaylistsMetadata) GetComposite() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Composite
+}
+
+func (o *GetPlaylistsMetadata) GetIcon() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Icon
+}
+
+func (o *GetPlaylistsMetadata) GetViewCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.ViewCount
+}
+
+func (o *GetPlaylistsMetadata) GetLastViewedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LastViewedAt
+}
+
+func (o *GetPlaylistsMetadata) GetDuration() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Duration
+}
+
+func (o *GetPlaylistsMetadata) GetLeafCount() *int {
+	if o == nil {
+		return nil
+	}
+	return o.LeafCount
+}
+
+func (o *GetPlaylistsMetadata) GetAddedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.AddedAt
+}
+
+func (o *GetPlaylistsMetadata) GetUpdatedAt() *int {
+	if o == nil {
+		return nil
+	}
+	return o.UpdatedAt
+}
+
+type GetPlaylistsMediaContainer struct {
+	Size     *int                   `json:"size,omitempty"`
+	Metadata []GetPlaylistsMetadata `json:"Metadata,omitempty"`
+}
+
+func (o *GetPlaylistsMediaContainer) GetSize() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Size
+}
+
+func (o *GetPlaylistsMediaContainer) GetMetadata() []GetPlaylistsMetadata {
+	if o == nil {
+		return nil
+	}
+	return o.Metadata
+}
+
+// GetPlaylistsResponseBody - returns all playlists
+type GetPlaylistsResponseBody struct {
+	MediaContainer *GetPlaylistsMediaContainer `json:"MediaContainer,omitempty"`
+}
+
+func (o *GetPlaylistsResponseBody) GetMediaContainer() *GetPlaylistsMediaContainer {
+	if o == nil {
+		return nil
+	}
+	return o.MediaContainer
 }
 
 type GetPlaylistsResponse struct {
@@ -134,8 +296,10 @@ type GetPlaylistsResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// returns all playlists
+	TwoHundredApplicationJSONObject *GetPlaylistsResponseBody
 	// Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-	Object *GetPlaylistsResponseBody
+	FourHundredAndOneApplicationJSONObject *GetPlaylistsPlaylistsResponseBody
 }
 
 func (o *GetPlaylistsResponse) GetContentType() string {
@@ -159,9 +323,16 @@ func (o *GetPlaylistsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetPlaylistsResponse) GetObject() *GetPlaylistsResponseBody {
+func (o *GetPlaylistsResponse) GetTwoHundredApplicationJSONObject() *GetPlaylistsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.TwoHundredApplicationJSONObject
+}
+
+func (o *GetPlaylistsResponse) GetFourHundredAndOneApplicationJSONObject() *GetPlaylistsPlaylistsResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }

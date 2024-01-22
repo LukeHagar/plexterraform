@@ -68,9 +68,6 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, request operations.GetGlobalHu
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.GetGlobalHubsResponseBody
@@ -78,7 +75,20 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, request operations.GetGlobalHu
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetGlobalHubsHubsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -133,9 +143,6 @@ func (s *Hubs) GetLibraryHubs(ctx context.Context, request operations.GetLibrary
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.GetLibraryHubsResponseBody
@@ -143,7 +150,20 @@ func (s *Hubs) GetLibraryHubs(ctx context.Context, request operations.GetLibrary
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetLibraryHubsHubsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

@@ -30,7 +30,7 @@ func newPlaylists(sdkConfig sdkConfiguration) *Playlists {
 
 // CreatePlaylist - Create a Playlist
 // Create a new playlist. By default the playlist is blank. To create a playlist along with a first item, pass:
-// - `uri` - The content URI for what we're playing (e.g. `library://...`).
+// - `uri` - The content URI for what we're playing (e.g. `server://1234/com.plexapp.plugins.library/library/metadata/1`).
 // - `playQueueID` - To create a playlist from an existing play queue.
 func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.CreatePlaylistRequest) (*operations.CreatePlaylistResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -73,9 +73,6 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.CreatePlaylistResponseBody
@@ -83,7 +80,20 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.CreatePlaylistPlaylistsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -96,7 +106,7 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 // Get All Playlists given the specified filters.
 func (s *Playlists) GetPlaylists(ctx context.Context, request operations.GetPlaylistsRequest) (*operations.GetPlaylistsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url := strings.TrimSuffix(baseURL, "/") + "/playlists/all"
+	url := strings.TrimSuffix(baseURL, "/") + "/playlists"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -135,9 +145,6 @@ func (s *Playlists) GetPlaylists(ctx context.Context, request operations.GetPlay
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.GetPlaylistsResponseBody
@@ -145,7 +152,20 @@ func (s *Playlists) GetPlaylists(ctx context.Context, request operations.GetPlay
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetPlaylistsPlaylistsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -197,9 +217,6 @@ func (s *Playlists) GetPlaylist(ctx context.Context, request operations.GetPlayl
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.GetPlaylistResponseBody
@@ -207,7 +224,20 @@ func (s *Playlists) GetPlaylist(ctx context.Context, request operations.GetPlayl
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetPlaylistPlaylistsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -292,6 +322,10 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, request operations.Updat
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
+
+	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+		return nil, fmt.Errorf("error populating query params: %w", err)
+	}
 
 	client := s.sdkConfiguration.SecurityClient
 
@@ -387,9 +421,6 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, request operations.
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.GetPlaylistContentsResponseBody
@@ -397,7 +428,20 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, request operations.
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.GetPlaylistContentsPlaylistsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
@@ -468,7 +512,7 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, request operation
 }
 
 // AddPlaylistContents - Adding to a Playlist
-// Adds a generator to a playlist, same parameters as the POST above. With a dumb playlist, this adds the specified items to the playlist.
+// Adds a generator to a playlist, same parameters as the POST to create. With a dumb playlist, this adds the specified items to the playlist.
 // With a smart playlist, passing a new `uri` parameter replaces the rules for the playlist. Returns the playlist.
 func (s *Playlists) AddPlaylistContents(ctx context.Context, request operations.AddPlaylistContentsRequest) (*operations.AddPlaylistContentsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
@@ -514,9 +558,6 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, request operations.
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
 			var out operations.AddPlaylistContentsResponseBody
@@ -524,7 +565,20 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, request operations.
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
+		default:
+			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+	case httpRes.StatusCode == 401:
+		switch {
+		case utils.MatchContentType(contentType, `application/json`):
+			var out operations.AddPlaylistContentsPlaylistsResponseBody
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}

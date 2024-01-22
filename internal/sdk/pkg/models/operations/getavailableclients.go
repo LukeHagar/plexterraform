@@ -33,12 +33,12 @@ func (o *GetAvailableClientsErrors) GetStatus() *float64 {
 	return o.Status
 }
 
-// GetAvailableClientsResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-type GetAvailableClientsResponseBody struct {
+// GetAvailableClientsServerResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type GetAvailableClientsServerResponseBody struct {
 	Errors []GetAvailableClientsErrors `json:"errors,omitempty"`
 }
 
-func (o *GetAvailableClientsResponseBody) GetErrors() []GetAvailableClientsErrors {
+func (o *GetAvailableClientsServerResponseBody) GetErrors() []GetAvailableClientsErrors {
 	if o == nil {
 		return nil
 	}
@@ -155,11 +155,12 @@ func (o *GetAvailableClientsMediaContainer) GetServer() []Server {
 	return o.Server
 }
 
-type ResponseBody struct {
+// GetAvailableClientsResponseBody - Available Clients
+type GetAvailableClientsResponseBody struct {
 	MediaContainer *GetAvailableClientsMediaContainer `json:"MediaContainer,omitempty"`
 }
 
-func (o *ResponseBody) GetMediaContainer() *GetAvailableClientsMediaContainer {
+func (o *GetAvailableClientsResponseBody) GetMediaContainer() *GetAvailableClientsMediaContainer {
 	if o == nil {
 		return nil
 	}
@@ -174,9 +175,9 @@ type GetAvailableClientsResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// Available Clients
-	ResponseBodies []ResponseBody
+	TwoHundredApplicationJSONObject *GetAvailableClientsResponseBody
 	// Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
-	Object *GetAvailableClientsResponseBody
+	FourHundredAndOneApplicationJSONObject *GetAvailableClientsServerResponseBody
 }
 
 func (o *GetAvailableClientsResponse) GetContentType() string {
@@ -200,16 +201,16 @@ func (o *GetAvailableClientsResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetAvailableClientsResponse) GetResponseBodies() []ResponseBody {
+func (o *GetAvailableClientsResponse) GetTwoHundredApplicationJSONObject() *GetAvailableClientsResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.ResponseBodies
+	return o.TwoHundredApplicationJSONObject
 }
 
-func (o *GetAvailableClientsResponse) GetObject() *GetAvailableClientsResponseBody {
+func (o *GetAvailableClientsResponse) GetFourHundredAndOneApplicationJSONObject() *GetAvailableClientsServerResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.FourHundredAndOneApplicationJSONObject
 }

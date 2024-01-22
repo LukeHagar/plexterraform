@@ -50,20 +50,22 @@ type TranscodeSession struct {
 	Throttled            *bool    `json:"throttled,omitempty"`
 	Complete             *bool    `json:"complete,omitempty"`
 	Progress             *float64 `json:"progress,omitempty"`
-	Size                 *float64 `json:"size,omitempty"`
+	Size                 *int     `json:"size,omitempty"`
 	Speed                *float64 `json:"speed,omitempty"`
 	Error                *bool    `json:"error,omitempty"`
-	Duration             *float64 `json:"duration,omitempty"`
+	Duration             *int     `json:"duration,omitempty"`
+	Remaining            *int     `json:"remaining,omitempty"`
 	Context              *string  `json:"context,omitempty"`
 	SourceVideoCodec     *string  `json:"sourceVideoCodec,omitempty"`
 	SourceAudioCodec     *string  `json:"sourceAudioCodec,omitempty"`
 	VideoDecision        *string  `json:"videoDecision,omitempty"`
 	AudioDecision        *string  `json:"audioDecision,omitempty"`
+	SubtitleDecision     *string  `json:"subtitleDecision,omitempty"`
 	Protocol             *string  `json:"protocol,omitempty"`
 	Container            *string  `json:"container,omitempty"`
 	VideoCodec           *string  `json:"videoCodec,omitempty"`
 	AudioCodec           *string  `json:"audioCodec,omitempty"`
-	AudioChannels        *float64 `json:"audioChannels,omitempty"`
+	AudioChannels        *int     `json:"audioChannels,omitempty"`
 	TranscodeHwRequested *bool    `json:"transcodeHwRequested,omitempty"`
 	TimeStamp            *float64 `json:"timeStamp,omitempty"`
 	MaxOffsetAvailable   *float64 `json:"maxOffsetAvailable,omitempty"`
@@ -98,7 +100,7 @@ func (o *TranscodeSession) GetProgress() *float64 {
 	return o.Progress
 }
 
-func (o *TranscodeSession) GetSize() *float64 {
+func (o *TranscodeSession) GetSize() *int {
 	if o == nil {
 		return nil
 	}
@@ -119,11 +121,18 @@ func (o *TranscodeSession) GetError() *bool {
 	return o.Error
 }
 
-func (o *TranscodeSession) GetDuration() *float64 {
+func (o *TranscodeSession) GetDuration() *int {
 	if o == nil {
 		return nil
 	}
 	return o.Duration
+}
+
+func (o *TranscodeSession) GetRemaining() *int {
+	if o == nil {
+		return nil
+	}
+	return o.Remaining
 }
 
 func (o *TranscodeSession) GetContext() *string {
@@ -161,6 +170,13 @@ func (o *TranscodeSession) GetAudioDecision() *string {
 	return o.AudioDecision
 }
 
+func (o *TranscodeSession) GetSubtitleDecision() *string {
+	if o == nil {
+		return nil
+	}
+	return o.SubtitleDecision
+}
+
 func (o *TranscodeSession) GetProtocol() *string {
 	if o == nil {
 		return nil
@@ -189,7 +205,7 @@ func (o *TranscodeSession) GetAudioCodec() *string {
 	return o.AudioCodec
 }
 
-func (o *TranscodeSession) GetAudioChannels() *float64 {
+func (o *TranscodeSession) GetAudioChannels() *int {
 	if o == nil {
 		return nil
 	}
@@ -225,11 +241,11 @@ func (o *TranscodeSession) GetMinOffsetAvailable() *float64 {
 }
 
 type GetTranscodeSessionsMediaContainer struct {
-	Size             *float64           `json:"size,omitempty"`
+	Size             *int               `json:"size,omitempty"`
 	TranscodeSession []TranscodeSession `json:"TranscodeSession,omitempty"`
 }
 
-func (o *GetTranscodeSessionsMediaContainer) GetSize() *float64 {
+func (o *GetTranscodeSessionsMediaContainer) GetSize() *int {
 	if o == nil {
 		return nil
 	}
