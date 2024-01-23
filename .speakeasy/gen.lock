@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
-  docChecksum: 7aba498c024534142941d65a7c2e649c
+  docChecksum: 49e77b550f057eb568502dc74fee7cce
   docVersion: 0.0.3
   speakeasyVersion: internal
   generationVersion: 2.237.3
-  releaseVersion: 0.3.1
-  configChecksum: 96cf52ff2db14b0d015b49a82209b77b
+  releaseVersion: 0.3.2
+  configChecksum: e13465e7891ae041cc668edefa53f561
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
@@ -123,6 +123,7 @@ generatedFiles:
   - internal/sdk/pkg/models/operations/deletelibrary.go
   - internal/sdk/pkg/models/operations/getlibraryitems.go
   - internal/sdk/pkg/models/operations/refreshlibrary.go
+  - internal/sdk/pkg/models/operations/searchlibrary.go
   - internal/sdk/pkg/models/operations/getmetadata.go
   - internal/sdk/pkg/models/operations/getmetadatachildren.go
   - internal/sdk/pkg/models/operations/getondeck.go
