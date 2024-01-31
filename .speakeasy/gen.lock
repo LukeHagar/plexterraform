@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
-  docChecksum: 95d4ac4070b7f9db42126fc81b258e02
+  docChecksum: 94439465ae5d544f0e52b00719af05ee
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.237.3
-  releaseVersion: 0.3.3
-  configChecksum: 9e5cb1e3ab2e0be2fce9e48e71feacda
+  generationVersion: 2.239.4
+  releaseVersion: 0.4.0
+  configChecksum: b244e39f31dda4bc1f3428b5e4025f10
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
     constsAndDefaults: 0.1.2
-    core: 3.8.4
+    core: 3.9.2
     globalSecurity: 2.81.3
     globalServerURLs: 2.82.1
+    methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
     unions: 2.81.7
 generatedFiles:
@@ -27,6 +28,8 @@ generatedFiles:
   - internal/sdk/search.go
   - internal/sdk/library.go
   - internal/sdk/log.go
+  - internal/sdk/tv.go
+  - internal/sdk/plex.go
   - internal/sdk/playlists.go
   - internal/sdk/security.go
   - internal/sdk/sessions.go
@@ -130,6 +133,8 @@ generatedFiles:
   - internal/sdk/pkg/models/operations/logline.go
   - internal/sdk/pkg/models/operations/logmultiline.go
   - internal/sdk/pkg/models/operations/enablepapertrail.go
+  - internal/sdk/pkg/models/operations/getpin.go
+  - internal/sdk/pkg/models/operations/gettoken.go
   - internal/sdk/pkg/models/operations/createplaylist.go
   - internal/sdk/pkg/models/operations/getplaylists.go
   - internal/sdk/pkg/models/operations/getplaylist.go
@@ -154,4 +159,5 @@ generatedFiles:
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf
+  - internal/sdk/pkg/models/operations/options.go
   - .gitattributes

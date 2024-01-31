@@ -45,19 +45,19 @@ func (o *GetLibrariesLibraryResponseBody) GetErrors() []GetLibrariesErrors {
 	return o.Errors
 }
 
-type Location struct {
+type GetLibrariesLocation struct {
 	ID   *int    `json:"id,omitempty"`
 	Path *string `json:"path,omitempty"`
 }
 
-func (o *Location) GetID() *int {
+func (o *GetLibrariesLocation) GetID() *int {
 	if o == nil {
 		return nil
 	}
 	return o.ID
 }
 
-func (o *Location) GetPath() *string {
+func (o *GetLibrariesLocation) GetPath() *string {
 	if o == nil {
 		return nil
 	}
@@ -65,27 +65,27 @@ func (o *Location) GetPath() *string {
 }
 
 type GetLibrariesDirectory struct {
-	AllowSync        *bool      `json:"allowSync,omitempty"`
-	Art              *string    `json:"art,omitempty"`
-	Composite        *string    `json:"composite,omitempty"`
-	Filters          *bool      `json:"filters,omitempty"`
-	Refreshing       *bool      `json:"refreshing,omitempty"`
-	Thumb            *string    `json:"thumb,omitempty"`
-	Key              *string    `json:"key,omitempty"`
-	Type             *string    `json:"type,omitempty"`
-	Title            *string    `json:"title,omitempty"`
-	Agent            *string    `json:"agent,omitempty"`
-	Scanner          *string    `json:"scanner,omitempty"`
-	Language         *string    `json:"language,omitempty"`
-	UUID             *string    `json:"uuid,omitempty"`
-	UpdatedAt        *int       `json:"updatedAt,omitempty"`
-	CreatedAt        *int       `json:"createdAt,omitempty"`
-	ScannedAt        *int       `json:"scannedAt,omitempty"`
-	Content          *bool      `json:"content,omitempty"`
-	Directory        *bool      `json:"directory,omitempty"`
-	ContentChangedAt *int       `json:"contentChangedAt,omitempty"`
-	Hidden           *int       `json:"hidden,omitempty"`
-	Location         []Location `json:"Location,omitempty"`
+	AllowSync        *bool                  `json:"allowSync,omitempty"`
+	Art              *string                `json:"art,omitempty"`
+	Composite        *string                `json:"composite,omitempty"`
+	Filters          *bool                  `json:"filters,omitempty"`
+	Refreshing       *bool                  `json:"refreshing,omitempty"`
+	Thumb            *string                `json:"thumb,omitempty"`
+	Key              *string                `json:"key,omitempty"`
+	Type             *string                `json:"type,omitempty"`
+	Title            *string                `json:"title,omitempty"`
+	Agent            *string                `json:"agent,omitempty"`
+	Scanner          *string                `json:"scanner,omitempty"`
+	Language         *string                `json:"language,omitempty"`
+	UUID             *string                `json:"uuid,omitempty"`
+	UpdatedAt        *int                   `json:"updatedAt,omitempty"`
+	CreatedAt        *int                   `json:"createdAt,omitempty"`
+	ScannedAt        *int                   `json:"scannedAt,omitempty"`
+	Content          *bool                  `json:"content,omitempty"`
+	Directory        *bool                  `json:"directory,omitempty"`
+	ContentChangedAt *int                   `json:"contentChangedAt,omitempty"`
+	Hidden           *int                   `json:"hidden,omitempty"`
+	Location         []GetLibrariesLocation `json:"Location,omitempty"`
 }
 
 func (o *GetLibrariesDirectory) GetAllowSync() *bool {
@@ -228,7 +228,7 @@ func (o *GetLibrariesDirectory) GetHidden() *int {
 	return o.Hidden
 }
 
-func (o *GetLibrariesDirectory) GetLocation() []Location {
+func (o *GetLibrariesDirectory) GetLocation() []GetLibrariesLocation {
 	if o == nil {
 		return nil
 	}
