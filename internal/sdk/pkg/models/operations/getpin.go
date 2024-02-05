@@ -18,7 +18,10 @@ type GetPinRequest struct {
 	// Non-Strong codes are used for `Plex.tv/link`
 	//
 	Strong *bool `default:"false" queryParam:"style=form,explode=true,name=strong"`
-	// Plex Authentication Token
+	// The unique identifier for the client application
+	// This is used to track the client application and its usage
+	// (UUID, serial number, or other number unique per device)
+	//
 	XPlexClientIdentifier string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
 }
 
@@ -74,12 +77,12 @@ func (o *GetPinErrors) GetStatus() *float64 {
 	return o.Status
 }
 
-// GetPinPlexTvResponseBody - X-Plex-Client-Identifier is missing
-type GetPinPlexTvResponseBody struct {
+// GetPinPlexResponseBody - X-Plex-Client-Identifier is missing
+type GetPinPlexResponseBody struct {
 	Errors []GetPinErrors `json:"errors,omitempty"`
 }
 
-func (o *GetPinPlexTvResponseBody) GetErrors() []GetPinErrors {
+func (o *GetPinPlexResponseBody) GetErrors() []GetPinErrors {
 	if o == nil {
 		return nil
 	}
@@ -295,7 +298,7 @@ type GetPinResponse struct {
 	// The Pin
 	TwoHundredApplicationJSONObject *GetPinResponseBody
 	// X-Plex-Client-Identifier is missing
-	FourHundredApplicationJSONObject *GetPinPlexTvResponseBody
+	FourHundredApplicationJSONObject *GetPinPlexResponseBody
 }
 
 func (o *GetPinResponse) GetContentType() string {
@@ -326,7 +329,7 @@ func (o *GetPinResponse) GetTwoHundredApplicationJSONObject() *GetPinResponseBod
 	return o.TwoHundredApplicationJSONObject
 }
 
-func (o *GetPinResponse) GetFourHundredApplicationJSONObject() *GetPinPlexTvResponseBody {
+func (o *GetPinResponse) GetFourHundredApplicationJSONObject() *GetPinPlexResponseBody {
 	if o == nil {
 		return nil
 	}
