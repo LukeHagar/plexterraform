@@ -73,6 +73,9 @@ type PlexAPI struct {
 	// API Calls interacting with Plex Media Server Media
 	//
 	Media *Media
+	// API Calls that perform operations with Plex Media Server Videos
+	//
+	Video *Video
 	// Activities are awesome. They provide a way to monitor and control asynchronous operations on the server. In order to receive real-time updates for activities, a client would normally subscribe via either EventSource or Websocket endpoints.
 	// Activities are associated with HTTP replies via a special `X-Plex-Activity` header which contains the UUID of the activity.
 	// Activities are optional cancellable. If cancellable, they may be cancelled via the `DELETE` endpoint. Other details:
@@ -109,6 +112,9 @@ type PlexAPI struct {
 	// API Calls against Security for Plex Media Server
 	//
 	Security *Security
+	// API Calls that perform operations with Plex Media Server Statistics
+	//
+	Statistics *Statistics
 	// API Calls that perform search operations with Plex Media Server Sessions
 	//
 	Sessions *Sessions
@@ -116,9 +122,6 @@ type PlexAPI struct {
 	// Updates to the status can be observed via the Event API.
 	//
 	Updater *Updater
-	// API Calls that perform operations with Plex Media Server Videos
-	//
-	Video *Video
 
 	sdkConfiguration sdkConfiguration
 }
@@ -262,9 +265,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.5.0",
-			GenVersion:        "2.249.1",
-			UserAgent:         "speakeasy-sdk/go 0.5.0 2.249.1 0.0.3 PlexAPI",
+			SDKVersion:        "0.6.0",
+			GenVersion:        "2.269.0",
+			UserAgent:         "speakeasy-sdk/go 0.6.0 2.269.0 0.0.3 PlexAPI",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "http",
@@ -294,6 +297,8 @@ func New(opts ...SDKOption) *PlexAPI {
 
 	sdk.Media = newMedia(sdk.sdkConfiguration)
 
+	sdk.Video = newVideo(sdk.sdkConfiguration)
+
 	sdk.Activities = newActivities(sdk.sdkConfiguration)
 
 	sdk.Butler = newButler(sdk.sdkConfiguration)
@@ -312,11 +317,11 @@ func New(opts ...SDKOption) *PlexAPI {
 
 	sdk.Security = newSecurity(sdk.sdkConfiguration)
 
+	sdk.Statistics = newStatistics(sdk.sdkConfiguration)
+
 	sdk.Sessions = newSessions(sdk.sdkConfiguration)
 
 	sdk.Updater = newUpdater(sdk.sdkConfiguration)
-
-	sdk.Video = newVideo(sdk.sdkConfiguration)
 
 	return sdk
 }

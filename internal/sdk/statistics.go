@@ -14,22 +14,22 @@ import (
 	"strings"
 )
 
-// Video - API Calls that perform operations with Plex Media Server Videos
-type Video struct {
+// Statistics - API Calls that perform operations with Plex Media Server Statistics
+type Statistics struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newVideo(sdkConfig sdkConfiguration) *Video {
-	return &Video{
+func newStatistics(sdkConfig sdkConfiguration) *Statistics {
+	return &Statistics{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
-// GetTimeline - Get the timeline for a media item
-// Get the timeline for a media item
-func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineRequest) (*operations.GetTimelineResponse, error) {
+// GetStatistics - Get Media Statistics
+// This will return the media statistics for the server
+func (s *Statistics) GetStatistics(ctx context.Context, request operations.GetStatisticsRequest) (*operations.GetStatisticsResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url := strings.TrimSuffix(baseURL, "/") + "/:/timeline"
+	url := strings.TrimSuffix(baseURL, "/") + "/statistics/media"
 
 	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 	if err != nil {
@@ -61,86 +61,34 @@ func (s *Video) GetTimeline(ctx context.Context, request operations.GetTimelineR
 
 	contentType := httpRes.Header.Get("Content-Type")
 
-	res := &operations.GetTimelineResponse{
+	res := &operations.GetStatisticsResponse{
 		StatusCode:  httpRes.StatusCode,
 		ContentType: contentType,
 		RawResponse: httpRes,
 	}
 	switch {
 	case httpRes.StatusCode == 200:
-		fallthrough
-	case httpRes.StatusCode == 400:
-	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.GetTimelineResponseBody
+			var out operations.GetStatisticsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.TwoHundredApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
-	}
-
-	return res, nil
-}
-
-// StartUniversalTranscode - Start Universal Transcode
-// Begin a Universal Transcode Session
-func (s *Video) StartUniversalTranscode(ctx context.Context, request operations.StartUniversalTranscodeRequest) (*operations.StartUniversalTranscodeResponse, error) {
-	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	url := strings.TrimSuffix(baseURL, "/") + "/video/:/transcode/universal/start.mpd"
-
-	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("error creating request: %w", err)
-	}
-	req.Header.Set("Accept", "application/json")
-	req.Header.Set("user-agent", s.sdkConfiguration.UserAgent)
-
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
-		return nil, fmt.Errorf("error populating query params: %w", err)
-	}
-
-	client := s.sdkConfiguration.SecurityClient
-
-	httpRes, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("error sending request: %w", err)
-	}
-	if httpRes == nil {
-		return nil, fmt.Errorf("error sending request: no response")
-	}
-
-	rawBody, err := io.ReadAll(httpRes.Body)
-	if err != nil {
-		return nil, fmt.Errorf("error reading response body: %w", err)
-	}
-	httpRes.Body.Close()
-	httpRes.Body = io.NopCloser(bytes.NewBuffer(rawBody))
-
-	contentType := httpRes.Header.Get("Content-Type")
-
-	res := &operations.StartUniversalTranscodeResponse{
-		StatusCode:  httpRes.StatusCode,
-		ContentType: contentType,
-		RawResponse: httpRes,
-	}
-	switch {
-	case httpRes.StatusCode == 200:
-		fallthrough
 	case httpRes.StatusCode == 400:
 	case httpRes.StatusCode == 401:
 		switch {
 		case utils.MatchContentType(contentType, `application/json`):
-			var out operations.StartUniversalTranscodeResponseBody
+			var out operations.GetStatisticsStatisticsResponseBody
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Object = &out
+			res.FourHundredAndOneApplicationJSONObject = &out
 		default:
 			return nil, sdkerrors.NewSDKError(fmt.Sprintf("unknown content-type received: %s", contentType), httpRes.StatusCode, string(rawBody), httpRes)
 		}
