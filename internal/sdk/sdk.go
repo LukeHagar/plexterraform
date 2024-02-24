@@ -109,9 +109,9 @@ type PlexAPI struct {
 	// This may cause the duration and number of items to change.
 	//
 	Playlists *Playlists
-	// API Calls against Security for Plex Media Server
+	// API Calls regarding authentication for Plex Media Server
 	//
-	Security *Security
+	Authentication *Authentication
 	// API Calls that perform operations with Plex Media Server Statistics
 	//
 	Statistics *Statistics
@@ -265,9 +265,9 @@ func New(opts ...SDKOption) *PlexAPI {
 		sdkConfiguration: sdkConfiguration{
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
-			SDKVersion:        "0.6.0",
-			GenVersion:        "2.269.0",
-			UserAgent:         "speakeasy-sdk/go 0.6.0 2.269.0 0.0.3 PlexAPI",
+			SDKVersion:        "0.6.1",
+			GenVersion:        "2.272.4",
+			UserAgent:         "speakeasy-sdk/go 0.6.1 2.272.4 0.0.3 PlexAPI",
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "http",
@@ -315,7 +315,7 @@ func New(opts ...SDKOption) *PlexAPI {
 
 	sdk.Playlists = newPlaylists(sdk.sdkConfiguration)
 
-	sdk.Security = newSecurity(sdk.sdkConfiguration)
+	sdk.Authentication = newAuthentication(sdk.sdkConfiguration)
 
 	sdk.Statistics = newStatistics(sdk.sdkConfiguration)
 

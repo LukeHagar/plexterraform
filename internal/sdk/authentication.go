@@ -14,20 +14,20 @@ import (
 	"strings"
 )
 
-// Security - API Calls against Security for Plex Media Server
-type Security struct {
+// Authentication - API Calls regarding authentication for Plex Media Server
+type Authentication struct {
 	sdkConfiguration sdkConfiguration
 }
 
-func newSecurity(sdkConfig sdkConfiguration) *Security {
-	return &Security{
+func newAuthentication(sdkConfig sdkConfiguration) *Authentication {
+	return &Authentication{
 		sdkConfiguration: sdkConfig,
 	}
 }
 
 // GetTransientToken - Get a Transient Token.
 // This endpoint provides the caller with a temporary token with the same access level as the caller's token. These tokens are valid for up to 48 hours and are destroyed if the server instance is restarted.
-func (s *Security) GetTransientToken(ctx context.Context, request operations.GetTransientTokenRequest) (*operations.GetTransientTokenResponse, error) {
+func (s *Authentication) GetTransientToken(ctx context.Context, request operations.GetTransientTokenRequest) (*operations.GetTransientTokenResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/security/token"
 
@@ -90,7 +90,7 @@ func (s *Security) GetTransientToken(ctx context.Context, request operations.Get
 // GetSourceConnectionInformation - Get Source Connection Information
 // If a caller requires connection details and a transient token for a source that is known to the server, for example a cloud media provider or shared PMS, then this endpoint can be called. This endpoint is only accessible with either an admin token or a valid transient token generated from an admin token.
 // Note: requires Plex Media Server >= 1.15.4.
-func (s *Security) GetSourceConnectionInformation(ctx context.Context, request operations.GetSourceConnectionInformationRequest) (*operations.GetSourceConnectionInformationResponse, error) {
+func (s *Authentication) GetSourceConnectionInformation(ctx context.Context, request operations.GetSourceConnectionInformationRequest) (*operations.GetSourceConnectionInformationResponse, error) {
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
 	url := strings.TrimSuffix(baseURL, "/") + "/security/resources"
 

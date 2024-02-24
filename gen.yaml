@@ -9,8 +9,10 @@ generation:
     nameResolutionDec2023: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
 terraform:
-  version: 0.6.0
+  version: 0.6.1
   author: LukeHagar
   imports:
     option: openapi

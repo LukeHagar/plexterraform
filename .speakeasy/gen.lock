@@ -1,20 +1,20 @@
 lockVersion: 2.0.0
 id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
-  docChecksum: 278d186496d83d5830ba4870f8cad39d
+  docChecksum: e34dac84738ebf2d447ea2b9055a6eeb
   docVersion: 0.0.3
   speakeasyVersion: internal
-  generationVersion: 2.269.0
-  releaseVersion: 0.6.0
-  configChecksum: 8b5014a8db27030d0bae86f162af255d
+  generationVersion: 2.272.4
+  releaseVersion: 0.6.1
+  configChecksum: e752e44e3eb091bcb6d52058f838ee2f
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
     constsAndDefaults: 0.1.3
-    core: 3.10.0
-    globalSecurity: 2.81.3
+    core: 3.10.2
+    globalSecurity: 2.81.4
     globalServerURLs: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
@@ -30,7 +30,7 @@ generatedFiles:
   - internal/sdk/log.go
   - internal/sdk/plex.go
   - internal/sdk/playlists.go
-  - internal/sdk/security.go
+  - internal/sdk/authentication.go
   - internal/sdk/statistics.go
   - internal/sdk/sessions.go
   - internal/sdk/updater.go

@@ -58,7 +58,7 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
@@ -144,7 +144,7 @@ func (s *Plex) GetToken(ctx context.Context, request operations.GetTokenRequest,
 
 	utils.PopulateHeaders(ctx, req, request)
 
-	client := s.sdkConfiguration.SecurityClient
+	client := s.sdkConfiguration.DefaultClient
 
 	httpRes, err := client.Do(req)
 	if err != nil {
