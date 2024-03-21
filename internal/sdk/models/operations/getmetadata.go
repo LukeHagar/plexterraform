@@ -3,8 +3,8 @@
 package operations
 
 import (
-	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/pkg/types"
-	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/pkg/utils"
+	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/internal/utils"
+	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/types"
 	"net/http"
 )
 

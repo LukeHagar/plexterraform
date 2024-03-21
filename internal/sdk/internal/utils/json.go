@@ -12,7 +12,7 @@ import (
 	"time"
 	"unsafe"
 
-	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/pkg/types"
+	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/types"
 
 	"github.com/ericlagergren/decimal"
 )

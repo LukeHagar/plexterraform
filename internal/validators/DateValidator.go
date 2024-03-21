@@ -4,7 +4,7 @@ package validators
 
 import (
 	"context"
-	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/pkg/types"
+	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/types"
 	"github.com/hashicorp/terraform-plugin-framework-validators/helpers/validatordiag"
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 )

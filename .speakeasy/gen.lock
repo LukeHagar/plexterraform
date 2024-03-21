@@ -3,18 +3,18 @@ id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
   docChecksum: e34dac84738ebf2d447ea2b9055a6eeb
   docVersion: 0.0.3
-  speakeasyVersion: 1.207.1
-  generationVersion: 2.280.6
-  releaseVersion: 0.6.2
-  configChecksum: e5f2c8fc4f178691477fc9628ef17cf9
+  speakeasyVersion: 1.215.1
+  generationVersion: 2.286.4
+  releaseVersion: 0.7.0
+  configChecksum: d39fbfbc5f1443a36c3b73aa6888a696
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
     constsAndDefaults: 0.1.4
-    core: 3.10.3
-    globalSecurity: 2.81.5
+    core: 3.11.1
+    globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.1
@@ -34,7 +34,89 @@ generatedFiles:
   - internal/sdk/statistics.go
   - internal/sdk/sessions.go
   - internal/sdk/updater.go
-  - internal/sdk/sdk.go
+  - internal/sdk/plexapi.go
+  - internal/sdk/models/errors/sdkerror.go
+  - internal/sdk/types/bigint.go
+  - internal/sdk/types/date.go
+  - internal/sdk/types/datetime.go
+  - internal/sdk/types/decimal.go
+  - internal/sdk/types/pointers.go
+  - internal/sdk/internal/utils/contenttype.go
+  - internal/sdk/internal/utils/form.go
+  - internal/sdk/internal/utils/headers.go
+  - internal/sdk/internal/utils/json.go
+  - internal/sdk/internal/utils/pathparams.go
+  - internal/sdk/internal/utils/queryparams.go
+  - internal/sdk/internal/utils/requestbody.go
+  - internal/sdk/internal/utils/retries.go
+  - internal/sdk/internal/utils/security.go
+  - internal/sdk/internal/utils/utils.go
+  - internal/sdk/models/operations/getservercapabilities.go
+  - internal/sdk/models/operations/getserverpreferences.go
+  - internal/sdk/models/operations/getavailableclients.go
+  - internal/sdk/models/operations/getdevices.go
+  - internal/sdk/models/operations/getserveridentity.go
+  - internal/sdk/models/operations/getmyplexaccount.go
+  - internal/sdk/models/operations/getresizedphoto.go
+  - internal/sdk/models/operations/getserverlist.go
+  - internal/sdk/models/operations/markplayed.go
+  - internal/sdk/models/operations/markunplayed.go
+  - internal/sdk/models/operations/updateplayprogress.go
+  - internal/sdk/models/operations/gettimeline.go
+  - internal/sdk/models/operations/startuniversaltranscode.go
+  - internal/sdk/models/operations/getserveractivities.go
+  - internal/sdk/models/operations/cancelserveractivities.go
+  - internal/sdk/models/operations/getbutlertasks.go
+  - internal/sdk/models/operations/startalltasks.go
+  - internal/sdk/models/operations/stopalltasks.go
+  - internal/sdk/models/operations/starttask.go
+  - internal/sdk/models/operations/stoptask.go
+  - internal/sdk/models/operations/getglobalhubs.go
+  - internal/sdk/models/operations/getlibraryhubs.go
+  - internal/sdk/models/operations/performsearch.go
+  - internal/sdk/models/operations/performvoicesearch.go
+  - internal/sdk/models/operations/getsearchresults.go
+  - internal/sdk/models/operations/getfilehash.go
+  - internal/sdk/models/operations/getrecentlyadded.go
+  - internal/sdk/models/operations/getlibraries.go
+  - internal/sdk/models/operations/getlibrary.go
+  - internal/sdk/models/operations/deletelibrary.go
+  - internal/sdk/models/operations/getlibraryitems.go
+  - internal/sdk/models/operations/refreshlibrary.go
+  - internal/sdk/models/operations/searchlibrary.go
+  - internal/sdk/models/operations/getmetadata.go
+  - internal/sdk/models/operations/getmetadatachildren.go
+  - internal/sdk/models/operations/getondeck.go
+  - internal/sdk/models/operations/logline.go
+  - internal/sdk/models/operations/logmultiline.go
+  - internal/sdk/models/operations/enablepapertrail.go
+  - internal/sdk/models/operations/getpin.go
+  - internal/sdk/models/operations/gettoken.go
+  - internal/sdk/models/operations/createplaylist.go
+  - internal/sdk/models/operations/getplaylists.go
+  - internal/sdk/models/operations/getplaylist.go
+  - internal/sdk/models/operations/deleteplaylist.go
+  - internal/sdk/models/operations/updateplaylist.go
+  - internal/sdk/models/operations/getplaylistcontents.go
+  - internal/sdk/models/operations/clearplaylistcontents.go
+  - internal/sdk/models/operations/addplaylistcontents.go
+  - internal/sdk/models/operations/uploadplaylist.go
+  - internal/sdk/models/operations/gettransienttoken.go
+  - internal/sdk/models/operations/getsourceconnectioninformation.go
+  - internal/sdk/models/operations/getstatistics.go
+  - internal/sdk/models/operations/getsessions.go
+  - internal/sdk/models/operations/getsessionhistory.go
+  - internal/sdk/models/operations/gettranscodesessions.go
+  - internal/sdk/models/operations/stoptranscodesession.go
+  - internal/sdk/models/operations/getupdatestatus.go
+  - internal/sdk/models/operations/checkforupdates.go
+  - internal/sdk/models/operations/applyupdates.go
+  - internal/sdk/models/shared/security.go
+  - internal/sdk/.gitignore
+  - internal/sdk/models/operations/options.go
+  - internal/sdk/.gitattributes
+  - internal/sdk/internal/hooks/registration.go
+  - internal/sdk/internal/hooks/hooks.go
   - examples/README.md
   - go.mod
   - go.sum
@@ -63,22 +145,6 @@ generatedFiles:
   - internal/provider/reflect/slice.go
   - internal/provider/reflect/struct.go
   - internal/provider/utils.go
-  - internal/sdk/pkg/models/sdkerrors/sdkerror.go
-  - internal/sdk/pkg/types/bigint.go
-  - internal/sdk/pkg/types/date.go
-  - internal/sdk/pkg/types/datetime.go
-  - internal/sdk/pkg/types/decimal.go
-  - internal/sdk/pkg/types/pointers.go
-  - internal/sdk/pkg/utils/contenttype.go
-  - internal/sdk/pkg/utils/form.go
-  - internal/sdk/pkg/utils/headers.go
-  - internal/sdk/pkg/utils/json.go
-  - internal/sdk/pkg/utils/pathparams.go
-  - internal/sdk/pkg/utils/queryparams.go
-  - internal/sdk/pkg/utils/requestbody.go
-  - internal/sdk/pkg/utils/retries.go
-  - internal/sdk/pkg/utils/security.go
-  - internal/sdk/pkg/utils/utils.go
   - internal/validators/DateValidator.go
   - internal/validators/ExactlyOneChild.go
   - internal/validators/JSONParseValidator.go
@@ -95,69 +161,7 @@ generatedFiles:
   - main.go
   - terraform-registry-manifest.json
   - tools/tools.go
-  - internal/sdk/pkg/models/operations/getservercapabilities.go
-  - internal/sdk/pkg/models/operations/getserverpreferences.go
-  - internal/sdk/pkg/models/operations/getavailableclients.go
-  - internal/sdk/pkg/models/operations/getdevices.go
-  - internal/sdk/pkg/models/operations/getserveridentity.go
-  - internal/sdk/pkg/models/operations/getmyplexaccount.go
-  - internal/sdk/pkg/models/operations/getresizedphoto.go
-  - internal/sdk/pkg/models/operations/getserverlist.go
-  - internal/sdk/pkg/models/operations/markplayed.go
-  - internal/sdk/pkg/models/operations/markunplayed.go
-  - internal/sdk/pkg/models/operations/updateplayprogress.go
-  - internal/sdk/pkg/models/operations/gettimeline.go
-  - internal/sdk/pkg/models/operations/startuniversaltranscode.go
-  - internal/sdk/pkg/models/operations/getserveractivities.go
-  - internal/sdk/pkg/models/operations/cancelserveractivities.go
-  - internal/sdk/pkg/models/operations/getbutlertasks.go
-  - internal/sdk/pkg/models/operations/startalltasks.go
-  - internal/sdk/pkg/models/operations/stopalltasks.go
-  - internal/sdk/pkg/models/operations/starttask.go
-  - internal/sdk/pkg/models/operations/stoptask.go
-  - internal/sdk/pkg/models/operations/getglobalhubs.go
-  - internal/sdk/pkg/models/operations/getlibraryhubs.go
-  - internal/sdk/pkg/models/operations/performsearch.go
-  - internal/sdk/pkg/models/operations/performvoicesearch.go
-  - internal/sdk/pkg/models/operations/getsearchresults.go
-  - internal/sdk/pkg/models/operations/getfilehash.go
-  - internal/sdk/pkg/models/operations/getrecentlyadded.go
-  - internal/sdk/pkg/models/operations/getlibraries.go
-  - internal/sdk/pkg/models/operations/getlibrary.go
-  - internal/sdk/pkg/models/operations/deletelibrary.go
-  - internal/sdk/pkg/models/operations/getlibraryitems.go
-  - internal/sdk/pkg/models/operations/refreshlibrary.go
-  - internal/sdk/pkg/models/operations/searchlibrary.go
-  - internal/sdk/pkg/models/operations/getmetadata.go
-  - internal/sdk/pkg/models/operations/getmetadatachildren.go
-  - internal/sdk/pkg/models/operations/getondeck.go
-  - internal/sdk/pkg/models/operations/logline.go
-  - internal/sdk/pkg/models/operations/logmultiline.go
-  - internal/sdk/pkg/models/operations/enablepapertrail.go
-  - internal/sdk/pkg/models/operations/getpin.go
-  - internal/sdk/pkg/models/operations/gettoken.go
-  - internal/sdk/pkg/models/operations/createplaylist.go
-  - internal/sdk/pkg/models/operations/getplaylists.go
-  - internal/sdk/pkg/models/operations/getplaylist.go
-  - internal/sdk/pkg/models/operations/deleteplaylist.go
-  - internal/sdk/pkg/models/operations/updateplaylist.go
-  - internal/sdk/pkg/models/operations/getplaylistcontents.go
-  - internal/sdk/pkg/models/operations/clearplaylistcontents.go
-  - internal/sdk/pkg/models/operations/addplaylistcontents.go
-  - internal/sdk/pkg/models/operations/uploadplaylist.go
-  - internal/sdk/pkg/models/operations/gettransienttoken.go
-  - internal/sdk/pkg/models/operations/getsourceconnectioninformation.go
-  - internal/sdk/pkg/models/operations/getstatistics.go
-  - internal/sdk/pkg/models/operations/getsessions.go
-  - internal/sdk/pkg/models/operations/getsessionhistory.go
-  - internal/sdk/pkg/models/operations/gettranscodesessions.go
-  - internal/sdk/pkg/models/operations/stoptranscodesession.go
-  - internal/sdk/pkg/models/operations/getupdatestatus.go
-  - internal/sdk/pkg/models/operations/checkforupdates.go
-  - internal/sdk/pkg/models/operations/applyupdates.go
-  - internal/sdk/pkg/models/shared/security.go
   - USAGE.md
   - internal/provider/provider.go
   - examples/provider/provider.tf
-  - internal/sdk/pkg/models/operations/options.go
   - .gitattributes

@@ -4,7 +4,7 @@ package operations
 
 import (
 	"errors"
-	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/pkg/utils"
+	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/internal/utils"
 )
 
 var ErrUnsupportedOption = errors.New("unsupported option")
