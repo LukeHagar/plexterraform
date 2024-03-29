@@ -63,9 +63,9 @@ func (s *Plex) GetPin(ctx context.Context, request operations.GetPinRequest, opt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, s.sdkConfiguration.Globals)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -166,7 +166,7 @@ func (s *Plex) GetToken(ctx context.Context, request operations.GetTokenRequest,
 		baseURL = *o.ServerURL
 	}
 
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/pins/{pinID}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -178,7 +178,7 @@ func (s *Plex) GetToken(ctx context.Context, request operations.GetTokenRequest,
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	utils.PopulateHeaders(ctx, req, request, nil)
+	utils.PopulateHeaders(ctx, req, request, s.sdkConfiguration.Globals)
 
 	req, err = s.sdkConfiguration.Hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
 	if err != nil {

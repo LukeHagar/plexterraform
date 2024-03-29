@@ -49,7 +49,7 @@ func (s *Library) GetFileHash(ctx context.Context, request operations.GetFileHas
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -374,7 +374,7 @@ func (s *Library) GetLibrary(ctx context.Context, request operations.GetLibraryR
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -386,7 +386,7 @@ func (s *Library) GetLibrary(ctx context.Context, request operations.GetLibraryR
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -478,7 +478,7 @@ func (s *Library) DeleteLibrary(ctx context.Context, request operations.DeleteLi
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -587,7 +587,7 @@ func (s *Library) GetLibraryItems(ctx context.Context, request operations.GetLib
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/{tag}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/{tag}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -674,7 +674,7 @@ func (s *Library) RefreshLibrary(ctx context.Context, request operations.Refresh
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/refresh", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/refresh", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -781,7 +781,7 @@ func (s *Library) SearchLibrary(ctx context.Context, request operations.SearchLi
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/search", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/sections/{sectionId}/search", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -793,7 +793,7 @@ func (s *Library) SearchLibrary(ctx context.Context, request operations.SearchLi
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateQueryParams(ctx, req, request, nil); err != nil {
+	if err := utils.PopulateQueryParams(ctx, req, request, s.sdkConfiguration.Globals); err != nil {
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
@@ -872,7 +872,7 @@ func (s *Library) GetMetadata(ctx context.Context, request operations.GetMetadat
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}
@@ -972,7 +972,7 @@ func (s *Library) GetMetadataChildren(ctx context.Context, request operations.Ge
 	}
 
 	baseURL := utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
-	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}/children", request, nil)
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/library/metadata/{ratingKey}/children", request, s.sdkConfiguration.Globals)
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

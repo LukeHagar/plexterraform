@@ -61,7 +61,7 @@ terraform {
   required_providers {
     PlexAPI = {
       source  = "LukeHagar/PlexAPI"
-      version = "0.8.0"
+      version = "0.9.0"
     }
   }
 }
@@ -98,6 +98,44 @@ TF_REATTACH_PROVIDERS=... terraform apply
 
 
 <!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+A parameter is configured globally. This parameter must be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `X-Plex-Client-Identifier` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `GetPin`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameter is available. The required parameter must be set when you initialize the SDK client.
+
+| Name | Type | Required | Description |
+| ---- | ---- |:--------:| ----------- |
+| XPlexClientIdentifier | string | ✔️ | The unique identifier for the client application
+This is used to track the client application and its usage
+(UUID, serial number, or other number unique per device)
+ |
+
+
+### Testing the provider locally
+
+Should you want to validate a change locally, the `--debug` flag allows you to execute the provider against a terraform instance locally.
+
+This also allows for debuggers (e.g. delve) to be attached to the provider.
+
+### Example
+
+```sh
+go run main.go --debug
+# Copy the TF_REATTACH_PROVIDERS env var
+# In a new terminal
+cd examples/your-example
+TF_REATTACH_PROVIDERS=... terraform init
+TF_REATTACH_PROVIDERS=... terraform apply
+```
+<!-- End Global Parameters [global-parameters] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
