@@ -3,17 +3,17 @@ id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
   docChecksum: a91eaf9ec1e6a3a6f4bf0571f5b18bae
   docVersion: 0.0.3
-  speakeasyVersion: 1.241.0
-  generationVersion: 2.300.0
-  releaseVersion: 0.10.0
-  configChecksum: 209a06e636e3932f0cf252f8833149be
+  speakeasyVersion: 1.246.1
+  generationVersion: 2.302.1
+  releaseVersion: 0.10.1
+  configChecksum: a7c0cdbd4e9883245b73209594e119cd
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
     constsAndDefaults: 0.1.4
-    core: 3.17.0
+    core: 3.17.3
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     globals: 2.82.1
@@ -52,6 +52,7 @@ generatedFiles:
   - internal/sdk/internal/utils/retries.go
   - internal/sdk/internal/utils/security.go
   - internal/sdk/internal/utils/utils.go
+  - internal/sdk/internal/globals/globals.go
   - internal/sdk/models/operations/getservercapabilities.go
   - internal/sdk/models/operations/getserverpreferences.go
   - internal/sdk/models/operations/getavailableclients.go

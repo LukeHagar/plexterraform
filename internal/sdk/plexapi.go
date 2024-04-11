@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/internal/globals"
 	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/internal/hooks"
 	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/internal/utils"
 	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/models/shared"
@@ -53,7 +54,7 @@ type sdkConfiguration struct {
 	SDKVersion        string
 	GenVersion        string
 	UserAgent         string
-	Globals           map[string]map[string]map[string]interface{}
+	Globals           globals.Globals
 	RetryConfig       *utils.RetryConfig
 	Hooks             *hooks.Hooks
 }
@@ -258,11 +259,7 @@ func WithSecuritySource(security func(context.Context) (shared.Security, error))
 // WithXPlexClientIdentifier allows setting the XPlexClientIdentifier parameter for all supported operations
 func WithXPlexClientIdentifier(xPlexClientIdentifier string) SDKOption {
 	return func(sdk *PlexAPI) {
-		if _, ok := sdk.sdkConfiguration.Globals["parameters"]["header"]; !ok {
-			sdk.sdkConfiguration.Globals["parameters"]["header"] = map[string]interface{}{}
-		}
-
-		sdk.sdkConfiguration.Globals["parameters"]["header"]["XPlexClientIdentifier"] = xPlexClientIdentifier
+		sdk.sdkConfiguration.Globals.XPlexClientIdentifier = xPlexClientIdentifier
 	}
 }
 
@@ -279,11 +276,9 @@ func New(opts ...SDKOption) *PlexAPI {
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
 			SDKVersion:        "0.0.1",
-			GenVersion:        "2.300.0",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.300.0 0.0.3 github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk",
-			Globals: map[string]map[string]map[string]interface{}{
-				"parameters": {},
-			},
+			GenVersion:        "2.302.1",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.302.1 0.0.3 github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk",
+			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{
 					"protocol": "http",
