@@ -3,17 +3,17 @@ id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
   docChecksum: a91eaf9ec1e6a3a6f4bf0571f5b18bae
   docVersion: 0.0.3
-  speakeasyVersion: 1.257.1
-  generationVersion: 2.308.2
-  releaseVersion: 0.11.0
-  configChecksum: 71b30dc8a611e961ba90cf047eb71395
+  speakeasyVersion: 1.260.6
+  generationVersion: 2.311.1
+  releaseVersion: 0.11.1
+  configChecksum: d39d174a8ed43495b0588e711e736594
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
 features:
   terraform:
     constsAndDefaults: 0.1.4
-    core: 3.18.1
+    core: 3.18.3
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     globals: 2.82.1
