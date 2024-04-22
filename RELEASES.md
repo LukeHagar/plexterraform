@@ -203,3 +203,13 @@ Based on:
 - [terraform v0.11.1] .
 ### Releases
 - [Terraform v0.11.1] https://registry.terraform.io/providers/LukeHagar/PlexAPI/0.11.1 - .
+
+## 2024-04-22 16:14:47
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.267.2 (2.312.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [terraform v0.11.2] .
+### Releases
+- [Terraform v0.11.2] https://registry.terraform.io/providers/LukeHagar/PlexAPI/0.11.2 - .
