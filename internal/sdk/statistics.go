@@ -130,4 +130,5 @@ func (s *Statistics) GetStatistics(ctx context.Context, request operations.GetSt
 	}
 
 	return res, nil
+
 }

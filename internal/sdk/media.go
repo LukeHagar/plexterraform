@@ -120,6 +120,7 @@ func (s *Media) MarkPlayed(ctx context.Context, request operations.MarkPlayedReq
 	}
 
 	return res, nil
+
 }
 
 // MarkUnplayed - Mark Media Unplayed
@@ -216,6 +217,7 @@ func (s *Media) MarkUnplayed(ctx context.Context, request operations.MarkUnplaye
 	}
 
 	return res, nil
+
 }
 
 // UpdatePlayProgress - Update Media Play Progress
@@ -312,4 +314,5 @@ func (s *Media) UpdatePlayProgress(ctx context.Context, request operations.Updat
 	}
 
 	return res, nil
+
 }

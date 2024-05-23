@@ -21,7 +21,6 @@ const (
 func (e Type) ToPointer() *Type {
 	return &e
 }
-
 func (e *Type) UnmarshalJSON(data []byte) error {
 	var v int64
 	if err := json.Unmarshal(data, &v); err != nil {
@@ -61,6 +60,45 @@ func (o *SearchLibraryRequest) GetType() Type {
 		return Type(0)
 	}
 	return o.Type
+}
+
+type SearchLibraryErrors struct {
+	Code    *float64 `json:"code,omitempty"`
+	Message *string  `json:"message,omitempty"`
+	Status  *float64 `json:"status,omitempty"`
+}
+
+func (o *SearchLibraryErrors) GetCode() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *SearchLibraryErrors) GetMessage() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Message
+}
+
+func (o *SearchLibraryErrors) GetStatus() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.Status
+}
+
+// SearchLibraryLibraryResponseBody - Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+type SearchLibraryLibraryResponseBody struct {
+	Errors []SearchLibraryErrors `json:"errors,omitempty"`
+}
+
+func (o *SearchLibraryLibraryResponseBody) GetErrors() []SearchLibraryErrors {
+	if o == nil {
+		return nil
+	}
+	return o.Errors
 }
 
 type SearchLibraryMetadata struct {
@@ -353,7 +391,9 @@ type SearchLibraryResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The contents of the library by section and type
-	Object *SearchLibraryResponseBody
+	TwoHundredApplicationJSONObject *SearchLibraryResponseBody
+	// Unauthorized - Returned if the X-Plex-Token is missing from the header or query.
+	FourHundredAndOneApplicationJSONObject *SearchLibraryLibraryResponseBody
 }
 
 func (o *SearchLibraryResponse) GetContentType() string {
@@ -377,9 +417,16 @@ func (o *SearchLibraryResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *SearchLibraryResponse) GetObject() *SearchLibraryResponseBody {
+func (o *SearchLibraryResponse) GetTwoHundredApplicationJSONObject() *SearchLibraryResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.TwoHundredApplicationJSONObject
+}
+
+func (o *SearchLibraryResponse) GetFourHundredAndOneApplicationJSONObject() *SearchLibraryLibraryResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredAndOneApplicationJSONObject
 }

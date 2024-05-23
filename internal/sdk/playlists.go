@@ -135,6 +135,7 @@ func (s *Playlists) CreatePlaylist(ctx context.Context, request operations.Creat
 	}
 
 	return res, nil
+
 }
 
 // GetPlaylists - Get All Playlists
@@ -241,6 +242,7 @@ func (s *Playlists) GetPlaylists(ctx context.Context, request operations.GetPlay
 	}
 
 	return res, nil
+
 }
 
 // GetPlaylist - Retrieve Playlist
@@ -344,6 +346,7 @@ func (s *Playlists) GetPlaylist(ctx context.Context, request operations.GetPlayl
 	}
 
 	return res, nil
+
 }
 
 // DeletePlaylist - Deletes a Playlist
@@ -436,6 +439,7 @@ func (s *Playlists) DeletePlaylist(ctx context.Context, request operations.Delet
 	}
 
 	return res, nil
+
 }
 
 // UpdatePlaylist - Update a Playlist
@@ -532,6 +536,7 @@ func (s *Playlists) UpdatePlaylist(ctx context.Context, request operations.Updat
 	}
 
 	return res, nil
+
 }
 
 // GetPlaylistContents - Retrieve Playlist Contents
@@ -641,6 +646,7 @@ func (s *Playlists) GetPlaylistContents(ctx context.Context, request operations.
 	}
 
 	return res, nil
+
 }
 
 // ClearPlaylistContents - Delete Playlist Contents
@@ -733,6 +739,7 @@ func (s *Playlists) ClearPlaylistContents(ctx context.Context, request operation
 	}
 
 	return res, nil
+
 }
 
 // AddPlaylistContents - Adding to a Playlist
@@ -840,6 +847,7 @@ func (s *Playlists) AddPlaylistContents(ctx context.Context, request operations.
 	}
 
 	return res, nil
+
 }
 
 // UploadPlaylist - Upload Playlist
@@ -936,4 +944,5 @@ func (s *Playlists) UploadPlaylist(ctx context.Context, request operations.Uploa
 	}
 
 	return res, nil
+
 }

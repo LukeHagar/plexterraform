@@ -127,6 +127,7 @@ func (s *Updater) GetUpdateStatus(ctx context.Context) (*operations.GetUpdateSta
 	}
 
 	return res, nil
+
 }
 
 // CheckForUpdates - Checking for updates
@@ -223,6 +224,7 @@ func (s *Updater) CheckForUpdates(ctx context.Context, request operations.CheckF
 	}
 
 	return res, nil
+
 }
 
 // ApplyUpdates - Apply Updates
@@ -321,4 +323,5 @@ func (s *Updater) ApplyUpdates(ctx context.Context, request operations.ApplyUpda
 	}
 
 	return res, nil
+
 }

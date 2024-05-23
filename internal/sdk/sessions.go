@@ -126,6 +126,7 @@ func (s *Sessions) GetSessions(ctx context.Context) (*operations.GetSessionsResp
 	}
 
 	return res, nil
+
 }
 
 // GetSessionHistory - Get Session History
@@ -228,6 +229,7 @@ func (s *Sessions) GetSessionHistory(ctx context.Context) (*operations.GetSessio
 	}
 
 	return res, nil
+
 }
 
 // GetTranscodeSessions - Get Transcode Sessions
@@ -330,6 +332,7 @@ func (s *Sessions) GetTranscodeSessions(ctx context.Context) (*operations.GetTra
 	}
 
 	return res, nil
+
 }
 
 // StopTranscodeSession - Stop a Transcode Session
@@ -422,4 +425,5 @@ func (s *Sessions) StopTranscodeSession(ctx context.Context, request operations.
 	}
 
 	return res, nil
+
 }

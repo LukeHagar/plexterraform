@@ -130,6 +130,7 @@ func (s *Hubs) GetGlobalHubs(ctx context.Context, request operations.GetGlobalHu
 	}
 
 	return res, nil
+
 }
 
 // GetLibraryHubs - Get library specific hubs
@@ -236,4 +237,5 @@ func (s *Hubs) GetLibraryHubs(ctx context.Context, request operations.GetLibrary
 	}
 
 	return res, nil
+
 }

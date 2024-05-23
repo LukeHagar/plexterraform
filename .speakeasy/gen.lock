@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
-  docChecksum: 543cb95355401d2e3c2ba11a50d9dd94
+  docChecksum: 911d74baa0d06121d2ce2c71d94e977a
   docVersion: 0.0.3
-  speakeasyVersion: 1.285.0
-  generationVersion: 2.326.3
-  releaseVersion: 0.14.0
-  configChecksum: 2c6e8190ee0aa4e41bd653129a33e169
+  speakeasyVersion: 1.295.1
+  generationVersion: 2.335.5
+  releaseVersion: 0.15.0
+  configChecksum: 918c48da4bd2da76e996dcde2db696ba
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
@@ -14,13 +14,12 @@ features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.20.0
+    core: 3.21.0
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     globals: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
-    unions: 2.81.12
 generatedFiles:
   - internal/sdk/server.go
   - internal/sdk/media.go
@@ -85,6 +84,7 @@ generatedFiles:
   - internal/sdk/models/operations/getlibraries.go
   - internal/sdk/models/operations/getlibrary.go
   - internal/sdk/models/operations/deletelibrary.go
+  - internal/sdk/models/operations/getlibraryitems.go
   - internal/sdk/models/operations/refreshlibrary.go
   - internal/sdk/models/operations/searchlibrary.go
   - internal/sdk/models/operations/getmetadata.go

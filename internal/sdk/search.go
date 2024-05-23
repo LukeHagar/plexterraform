@@ -132,6 +132,7 @@ func (s *Search) PerformSearch(ctx context.Context, request operations.PerformSe
 	}
 
 	return res, nil
+
 }
 
 // PerformVoiceSearch - Perform a voice search
@@ -231,6 +232,7 @@ func (s *Search) PerformVoiceSearch(ctx context.Context, request operations.Perf
 	}
 
 	return res, nil
+
 }
 
 // GetSearchResults - Get Search Results
@@ -337,4 +339,5 @@ func (s *Search) GetSearchResults(ctx context.Context, request operations.GetSea
 	}
 
 	return res, nil
+
 }

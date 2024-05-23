@@ -126,6 +126,7 @@ func (s *Server) GetServerCapabilities(ctx context.Context) (*operations.GetServ
 	}
 
 	return res, nil
+
 }
 
 // GetServerPreferences - Get Server Preferences
@@ -228,6 +229,7 @@ func (s *Server) GetServerPreferences(ctx context.Context) (*operations.GetServe
 	}
 
 	return res, nil
+
 }
 
 // GetAvailableClients - Get Available Clients
@@ -330,6 +332,7 @@ func (s *Server) GetAvailableClients(ctx context.Context) (*operations.GetAvaila
 	}
 
 	return res, nil
+
 }
 
 // GetDevices - Get Devices
@@ -432,6 +435,7 @@ func (s *Server) GetDevices(ctx context.Context) (*operations.GetDevicesResponse
 	}
 
 	return res, nil
+
 }
 
 // GetServerIdentity - Get Server Identity
@@ -534,6 +538,7 @@ func (s *Server) GetServerIdentity(ctx context.Context) (*operations.GetServerId
 	}
 
 	return res, nil
+
 }
 
 // GetMyPlexAccount - Get MyPlex Account
@@ -636,6 +641,7 @@ func (s *Server) GetMyPlexAccount(ctx context.Context) (*operations.GetMyPlexAcc
 	}
 
 	return res, nil
+
 }
 
 // GetResizedPhoto - Get a Resized Photo
@@ -732,6 +738,7 @@ func (s *Server) GetResizedPhoto(ctx context.Context, request operations.GetResi
 	}
 
 	return res, nil
+
 }
 
 // GetServerList - Get Server List
@@ -834,4 +841,5 @@ func (s *Server) GetServerList(ctx context.Context) (*operations.GetServerListRe
 	}
 
 	return res, nil
+
 }
