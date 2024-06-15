@@ -38,6 +38,9 @@ type GetPinRequest struct {
 	// (UUID, serial number, or other number unique per device)
 	//
 	XPlexClientIdentifier *string `header:"style=simple,explode=false,name=X-Plex-Client-Identifier"`
+	// Product name of the application shown in the list of devices
+	//
+	XPlexProduct string `header:"style=simple,explode=false,name=X-Plex-Product"`
 }
 
 func (g GetPinRequest) MarshalJSON() ([]byte, error) {
@@ -63,6 +66,13 @@ func (o *GetPinRequest) GetXPlexClientIdentifier() *string {
 		return nil
 	}
 	return o.XPlexClientIdentifier
+}
+
+func (o *GetPinRequest) GetXPlexProduct() string {
+	if o == nil {
+		return ""
+	}
+	return o.XPlexProduct
 }
 
 type GetPinErrors struct {
@@ -105,16 +115,16 @@ func (o *GetPinPlexResponseBody) GetErrors() []GetPinErrors {
 }
 
 type Location struct {
-	Code                       *string  `json:"code,omitempty"`
-	EuropeanUnionMember        *bool    `json:"european_union_member,omitempty"`
-	ContinentCode              *string  `json:"continent_code,omitempty"`
-	Country                    *string  `json:"country,omitempty"`
-	City                       *string  `json:"city,omitempty"`
-	TimeZone                   *string  `json:"time_zone,omitempty"`
-	PostalCode                 *float64 `json:"postal_code,omitempty"`
-	InPrivacyRestrictedCountry *bool    `json:"in_privacy_restricted_country,omitempty"`
-	Subdivisions               *string  `json:"subdivisions,omitempty"`
-	Coordinates                *string  `json:"coordinates,omitempty"`
+	Code                       *string `json:"code,omitempty"`
+	EuropeanUnionMember        *bool   `json:"european_union_member,omitempty"`
+	ContinentCode              *string `json:"continent_code,omitempty"`
+	Country                    *string `json:"country,omitempty"`
+	City                       *string `json:"city,omitempty"`
+	TimeZone                   *string `json:"time_zone,omitempty"`
+	PostalCode                 *string `json:"postal_code,omitempty"`
+	InPrivacyRestrictedCountry *bool   `json:"in_privacy_restricted_country,omitempty"`
+	Subdivisions               *string `json:"subdivisions,omitempty"`
+	Coordinates                *string `json:"coordinates,omitempty"`
 }
 
 func (o *Location) GetCode() *string {
@@ -159,7 +169,7 @@ func (o *Location) GetTimeZone() *string {
 	return o.TimeZone
 }
 
-func (o *Location) GetPostalCode() *float64 {
+func (o *Location) GetPostalCode() *string {
 	if o == nil {
 		return nil
 	}
@@ -311,7 +321,7 @@ type GetPinResponse struct {
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
 	// The Pin
-	TwoHundredApplicationJSONObject *GetPinResponseBody
+	TwoHundredAndOneApplicationJSONObject *GetPinResponseBody
 	// X-Plex-Client-Identifier is missing
 	FourHundredApplicationJSONObject *GetPinPlexResponseBody
 }
@@ -337,11 +347,11 @@ func (o *GetPinResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetPinResponse) GetTwoHundredApplicationJSONObject() *GetPinResponseBody {
+func (o *GetPinResponse) GetTwoHundredAndOneApplicationJSONObject() *GetPinResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.TwoHundredApplicationJSONObject
+	return o.TwoHundredAndOneApplicationJSONObject
 }
 
 func (o *GetPinResponse) GetFourHundredApplicationJSONObject() *GetPinPlexResponseBody {

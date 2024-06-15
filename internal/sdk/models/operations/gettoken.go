@@ -3,7 +3,9 @@
 package operations
 
 import (
+	"github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk/internal/utils"
 	"net/http"
+	"time"
 )
 
 var GetTokenServerList = []string{
@@ -76,16 +78,215 @@ func (o *GetTokenErrors) GetStatus() *float64 {
 	return o.Status
 }
 
-// GetTokenResponseBody - X-Plex-Client-Identifier is missing
-type GetTokenResponseBody struct {
+// GetTokenPlexResponseBody - X-Plex-Client-Identifier is missing
+type GetTokenPlexResponseBody struct {
 	Errors []GetTokenErrors `json:"errors,omitempty"`
 }
 
-func (o *GetTokenResponseBody) GetErrors() []GetTokenErrors {
+func (o *GetTokenPlexResponseBody) GetErrors() []GetTokenErrors {
 	if o == nil {
 		return nil
 	}
 	return o.Errors
+}
+
+type GetTokenLocation struct {
+	Code                       *string `json:"code,omitempty"`
+	EuropeanUnionMember        *bool   `json:"european_union_member,omitempty"`
+	ContinentCode              *string `json:"continent_code,omitempty"`
+	Country                    *string `json:"country,omitempty"`
+	City                       *string `json:"city,omitempty"`
+	TimeZone                   *string `json:"time_zone,omitempty"`
+	PostalCode                 *string `json:"postal_code,omitempty"`
+	InPrivacyRestrictedCountry *bool   `json:"in_privacy_restricted_country,omitempty"`
+	Subdivisions               *string `json:"subdivisions,omitempty"`
+	Coordinates                *string `json:"coordinates,omitempty"`
+}
+
+func (o *GetTokenLocation) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *GetTokenLocation) GetEuropeanUnionMember() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.EuropeanUnionMember
+}
+
+func (o *GetTokenLocation) GetContinentCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ContinentCode
+}
+
+func (o *GetTokenLocation) GetCountry() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Country
+}
+
+func (o *GetTokenLocation) GetCity() *string {
+	if o == nil {
+		return nil
+	}
+	return o.City
+}
+
+func (o *GetTokenLocation) GetTimeZone() *string {
+	if o == nil {
+		return nil
+	}
+	return o.TimeZone
+}
+
+func (o *GetTokenLocation) GetPostalCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.PostalCode
+}
+
+func (o *GetTokenLocation) GetInPrivacyRestrictedCountry() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.InPrivacyRestrictedCountry
+}
+
+func (o *GetTokenLocation) GetSubdivisions() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Subdivisions
+}
+
+func (o *GetTokenLocation) GetCoordinates() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Coordinates
+}
+
+// GetTokenResponseBody - Access Token
+type GetTokenResponseBody struct {
+	// PinID for use with authentication
+	ID      *float64 `json:"id,omitempty"`
+	Code    *string  `json:"code,omitempty"`
+	Product *string  `json:"product,omitempty"`
+	Trusted *bool    `json:"trusted,omitempty"`
+	// a link to a QR code hosted on plex.tv
+	// The QR code redirects to the relevant `plex.tv/link` authentication page
+	// Which then prompts the user for the 4 Digit Link Pin
+	//
+	Qr               *string           `json:"qr,omitempty"`
+	ClientIdentifier *string           `json:"clientIdentifier,omitempty"`
+	Location         *GetTokenLocation `json:"location,omitempty"`
+	ExpiresIn        *float64          `json:"expiresIn,omitempty"`
+	CreatedAt        *time.Time        `json:"createdAt,omitempty"`
+	ExpiresAt        *time.Time        `json:"expiresAt,omitempty"`
+	AuthToken        *string           `json:"authToken,omitempty"`
+	NewRegistration  *string           `json:"newRegistration,omitempty"`
+}
+
+func (g GetTokenResponseBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTokenResponseBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, false); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (o *GetTokenResponseBody) GetID() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.ID
+}
+
+func (o *GetTokenResponseBody) GetCode() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Code
+}
+
+func (o *GetTokenResponseBody) GetProduct() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Product
+}
+
+func (o *GetTokenResponseBody) GetTrusted() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.Trusted
+}
+
+func (o *GetTokenResponseBody) GetQr() *string {
+	if o == nil {
+		return nil
+	}
+	return o.Qr
+}
+
+func (o *GetTokenResponseBody) GetClientIdentifier() *string {
+	if o == nil {
+		return nil
+	}
+	return o.ClientIdentifier
+}
+
+func (o *GetTokenResponseBody) GetLocation() *GetTokenLocation {
+	if o == nil {
+		return nil
+	}
+	return o.Location
+}
+
+func (o *GetTokenResponseBody) GetExpiresIn() *float64 {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiresIn
+}
+
+func (o *GetTokenResponseBody) GetCreatedAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.CreatedAt
+}
+
+func (o *GetTokenResponseBody) GetExpiresAt() *time.Time {
+	if o == nil {
+		return nil
+	}
+	return o.ExpiresAt
+}
+
+func (o *GetTokenResponseBody) GetAuthToken() *string {
+	if o == nil {
+		return nil
+	}
+	return o.AuthToken
+}
+
+func (o *GetTokenResponseBody) GetNewRegistration() *string {
+	if o == nil {
+		return nil
+	}
+	return o.NewRegistration
 }
 
 type GetTokenResponse struct {
@@ -95,8 +296,10 @@ type GetTokenResponse struct {
 	StatusCode int
 	// Raw HTTP response; suitable for custom response parsing
 	RawResponse *http.Response
+	// Access Token
+	TwoHundredApplicationJSONObject *GetTokenResponseBody
 	// X-Plex-Client-Identifier is missing
-	Object *GetTokenResponseBody
+	FourHundredApplicationJSONObject *GetTokenPlexResponseBody
 }
 
 func (o *GetTokenResponse) GetContentType() string {
@@ -120,9 +323,16 @@ func (o *GetTokenResponse) GetRawResponse() *http.Response {
 	return o.RawResponse
 }
 
-func (o *GetTokenResponse) GetObject() *GetTokenResponseBody {
+func (o *GetTokenResponse) GetTwoHundredApplicationJSONObject() *GetTokenResponseBody {
 	if o == nil {
 		return nil
 	}
-	return o.Object
+	return o.TwoHundredApplicationJSONObject
+}
+
+func (o *GetTokenResponse) GetFourHundredApplicationJSONObject() *GetTokenPlexResponseBody {
+	if o == nil {
+		return nil
+	}
+	return o.FourHundredApplicationJSONObject
 }

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
-  docChecksum: 911d74baa0d06121d2ce2c71d94e977a
+  docChecksum: 37654ea0982ab5e87a9a9576014c9d19
   docVersion: 0.0.3
-  speakeasyVersion: 1.305.0
-  generationVersion: 2.340.3
-  releaseVersion: 0.15.3
-  configChecksum: c43fc80dfc97b40883b9ebb3195c01cf
+  speakeasyVersion: 1.308.1
+  generationVersion: 2.342.6
+  releaseVersion: 0.16.0
+  configChecksum: 164b8ea4eba6b7cd1405bc6fda363cba
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
@@ -20,22 +20,24 @@ features:
     globals: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
+    typeOverrides: 2.81.1
 generatedFiles:
   - internal/sdk/server.go
   - internal/sdk/media.go
   - internal/sdk/video.go
   - internal/sdk/activities.go
   - internal/sdk/butler.go
+  - internal/sdk/plex.go
   - internal/sdk/hubs.go
   - internal/sdk/search.go
   - internal/sdk/library.go
   - internal/sdk/log.go
-  - internal/sdk/plex.go
   - internal/sdk/playlists.go
   - internal/sdk/authentication.go
   - internal/sdk/statistics.go
   - internal/sdk/sessions.go
   - internal/sdk/updater.go
+  - internal/sdk/watchlist.go
   - internal/sdk/plexapi.go
   - internal/sdk/models/errors/sdkerror.go
   - internal/sdk/types/bigint.go
@@ -74,6 +76,9 @@ generatedFiles:
   - internal/sdk/models/operations/stopalltasks.go
   - internal/sdk/models/operations/starttask.go
   - internal/sdk/models/operations/stoptask.go
+  - internal/sdk/models/operations/gethomedata.go
+  - internal/sdk/models/operations/getpin.go
+  - internal/sdk/models/operations/gettoken.go
   - internal/sdk/models/operations/getglobalhubs.go
   - internal/sdk/models/operations/getlibraryhubs.go
   - internal/sdk/models/operations/performsearch.go
@@ -93,8 +98,6 @@ generatedFiles:
   - internal/sdk/models/operations/logline.go
   - internal/sdk/models/operations/logmultiline.go
   - internal/sdk/models/operations/enablepapertrail.go
-  - internal/sdk/models/operations/getpin.go
-  - internal/sdk/models/operations/gettoken.go
   - internal/sdk/models/operations/createplaylist.go
   - internal/sdk/models/operations/getplaylists.go
   - internal/sdk/models/operations/getplaylist.go
@@ -114,6 +117,7 @@ generatedFiles:
   - internal/sdk/models/operations/getupdatestatus.go
   - internal/sdk/models/operations/checkforupdates.go
   - internal/sdk/models/operations/applyupdates.go
+  - internal/sdk/models/operations/getwatchlist.go
   - internal/sdk/models/shared/security.go
   - internal/sdk/.gitignore
   - internal/sdk/models/operations/options.go

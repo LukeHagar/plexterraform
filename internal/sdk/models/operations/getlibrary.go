@@ -153,7 +153,7 @@ func (o *GetLibraryDirectory) GetSearch() *bool {
 	return o.Search
 }
 
-type Filter struct {
+type GetLibraryFilter struct {
 	Filter     *string `json:"filter,omitempty"`
 	FilterType *string `json:"filterType,omitempty"`
 	Key        *string `json:"key,omitempty"`
@@ -161,35 +161,35 @@ type Filter struct {
 	Type       *string `json:"type,omitempty"`
 }
 
-func (o *Filter) GetFilter() *string {
+func (o *GetLibraryFilter) GetFilter() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Filter
 }
 
-func (o *Filter) GetFilterType() *string {
+func (o *GetLibraryFilter) GetFilterType() *string {
 	if o == nil {
 		return nil
 	}
 	return o.FilterType
 }
 
-func (o *Filter) GetKey() *string {
+func (o *GetLibraryFilter) GetKey() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Key
 }
 
-func (o *Filter) GetTitle() *string {
+func (o *GetLibraryFilter) GetTitle() *string {
 	if o == nil {
 		return nil
 	}
 	return o.Title
 }
 
-func (o *Filter) GetType() *string {
+func (o *GetLibraryFilter) GetType() *string {
 	if o == nil {
 		return nil
 	}
@@ -283,13 +283,13 @@ func (o *Field) GetSubType() *string {
 }
 
 type GetLibraryType struct {
-	Key    *string  `json:"key,omitempty"`
-	Type   *string  `json:"type,omitempty"`
-	Title  *string  `json:"title,omitempty"`
-	Active *bool    `json:"active,omitempty"`
-	Filter []Filter `json:"Filter,omitempty"`
-	Sort   []Sort   `json:"Sort,omitempty"`
-	Field  []Field  `json:"Field,omitempty"`
+	Key    *string            `json:"key,omitempty"`
+	Type   *string            `json:"type,omitempty"`
+	Title  *string            `json:"title,omitempty"`
+	Active *bool              `json:"active,omitempty"`
+	Filter []GetLibraryFilter `json:"Filter,omitempty"`
+	Sort   []Sort             `json:"Sort,omitempty"`
+	Field  []Field            `json:"Field,omitempty"`
 }
 
 func (o *GetLibraryType) GetKey() *string {
@@ -320,7 +320,7 @@ func (o *GetLibraryType) GetActive() *bool {
 	return o.Active
 }
 
-func (o *GetLibraryType) GetFilter() []Filter {
+func (o *GetLibraryType) GetFilter() []GetLibraryFilter {
 	if o == nil {
 		return nil
 	}
