@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: e742591b-391d-4f4e-8484-d01a093b32ec
 management:
-  docChecksum: 37654ea0982ab5e87a9a9576014c9d19
+  docChecksum: e73920abd3a55e8d249592f2e3090574
   docVersion: 0.0.3
-  speakeasyVersion: 1.308.1
-  generationVersion: 2.342.6
-  releaseVersion: 0.16.0
-  configChecksum: 164b8ea4eba6b7cd1405bc6fda363cba
+  speakeasyVersion: 1.314.2
+  generationVersion: 2.349.6
+  releaseVersion: 0.17.0
+  configChecksum: 1ad7c7df83d2c81fab1bf53c153bcd1e
   repoURL: https://github.com/LukeHagar/plexterraform.git
   repoSubDirectory: .
   published: true
@@ -14,13 +14,15 @@ features:
   terraform:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.4
-    core: 3.21.3
+    core: 3.21.4
     globalSecurity: 2.81.6
     globalServerURLs: 2.82.1
     globals: 2.82.1
     methodServerURLs: 2.82.1
     nameOverrides: 2.81.2
+    nullables: 0.0.0
     typeOverrides: 2.81.1
+    unions: 2.81.15
 generatedFiles:
   - internal/sdk/server.go
   - internal/sdk/media.go
@@ -94,6 +96,7 @@ generatedFiles:
   - internal/sdk/models/operations/searchlibrary.go
   - internal/sdk/models/operations/getmetadata.go
   - internal/sdk/models/operations/getmetadatachildren.go
+  - internal/sdk/models/operations/gettopwatchedcontent.go
   - internal/sdk/models/operations/getondeck.go
   - internal/sdk/models/operations/logline.go
   - internal/sdk/models/operations/logmultiline.go
@@ -110,6 +113,8 @@ generatedFiles:
   - internal/sdk/models/operations/gettransienttoken.go
   - internal/sdk/models/operations/getsourceconnectioninformation.go
   - internal/sdk/models/operations/getstatistics.go
+  - internal/sdk/models/operations/getresourcesstatistics.go
+  - internal/sdk/models/operations/getbandwidthstatistics.go
   - internal/sdk/models/operations/getsessions.go
   - internal/sdk/models/operations/getsessionhistory.go
   - internal/sdk/models/operations/gettranscodesessions.go

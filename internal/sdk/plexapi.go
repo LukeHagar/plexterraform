@@ -163,7 +163,6 @@ func WithServerIndex(serverIndex int) SDKOption {
 	}
 }
 
-// ServerProtocol - The protocol to use when connecting to your plex server.
 type ServerProtocol string
 
 const (
@@ -255,7 +254,7 @@ func WithSecuritySource(security func(context.Context) (shared.Security, error))
 // WithXPlexClientIdentifier allows setting the XPlexClientIdentifier parameter for all supported operations
 func WithXPlexClientIdentifier(xPlexClientIdentifier string) SDKOption {
 	return func(sdk *PlexAPI) {
-		sdk.sdkConfiguration.Globals.XPlexClientIdentifier = xPlexClientIdentifier
+		sdk.sdkConfiguration.Globals.XPlexClientIdentifier = &xPlexClientIdentifier
 	}
 }
 
@@ -272,8 +271,8 @@ func New(opts ...SDKOption) *PlexAPI {
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
 			SDKVersion:        "0.0.1",
-			GenVersion:        "2.342.6",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.342.6 0.0.3 github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk",
+			GenVersion:        "2.349.6",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.349.6 0.0.3 github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{
