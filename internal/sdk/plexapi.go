@@ -271,8 +271,8 @@ func New(opts ...SDKOption) *PlexAPI {
 			Language:          "go",
 			OpenAPIDocVersion: "0.0.3",
 			SDKVersion:        "0.0.1",
-			GenVersion:        "2.349.6",
-			UserAgent:         "speakeasy-sdk/go 0.0.1 2.349.6 0.0.3 github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk",
+			GenVersion:        "2.352.0",
+			UserAgent:         "speakeasy-sdk/go 0.0.1 2.352.0 0.0.3 github.com/LukeHagar/terraform-provider-PlexAPI/internal/sdk",
 			Globals:           globals.Globals{},
 			ServerDefaults: []map[string]string{
 				{
